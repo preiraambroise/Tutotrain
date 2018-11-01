@@ -17,11 +17,6 @@ class CarnetDeBord
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $carnet_de_bord_id;
-
-    /**
      * @ORM\OneToOne(targetEntity="App\Entity\ProjetProfessionnel", inversedBy="carnet_de_bord_id", cascade={"persist", "remove"})
      */
     private $projet_professionnel_id;
@@ -29,18 +24,6 @@ class CarnetDeBord
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getCarnetDeBordId(): ?int
-    {
-        return $this->carnet_de_bord_id;
-    }
-
-    public function setCarnetDeBordId(int $carnet_de_bord_id): self
-    {
-        $this->carnet_de_bord_id = $carnet_de_bord_id;
-
-        return $this;
     }
 
     public function getProjetProfessionnelId(): ?ProjetProfessionnel

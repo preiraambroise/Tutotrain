@@ -17,11 +17,6 @@ class ProjetProfessionnel
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $projet_professionnel_id;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     private $resume;
@@ -39,18 +34,6 @@ class ProjetProfessionnel
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getProjetProfessionnelId(): ?int
-    {
-        return $this->projet_professionnel_id;
-    }
-
-    public function setProjetProfessionnelId(int $projet_professionnel_id): self
-    {
-        $this->projet_professionnel_id = $projet_professionnel_id;
-
-        return $this;
     }
 
     public function getResume(): ?string

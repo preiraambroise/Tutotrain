@@ -9,6 +9,15 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class EtapeDAvancement
 {
+    private const CREE = 1;
+    private const ENCOURS = 2;
+    private const TERMINE = 3;
+
+    public function __construct()
+    {
+        $this->date_creation = new \DateTime();
+        $this->setEtat(self::CREE);
+    }
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -27,7 +36,7 @@ class EtapeDAvancement
     private $description;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $delai;
 
@@ -45,7 +54,7 @@ class EtapeDAvancement
      * @ORM\ManyToOne(targetEntity="App\Entity\CarnetDeBord")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $carnet_de_bord_id;
+    private $carnet_de_bord;
 
     public function getId(): ?int
     {
@@ -112,14 +121,14 @@ class EtapeDAvancement
         return $this;
     }
 
-    public function getCarnetDeBordId(): ?CarnetDeBord
+    public function getCarnetDeBord(): ?CarnetDeBord
     {
-        return $this->carnet_de_bord_id;
+        return $this->carnet_de_bord;
     }
 
-    public function setCarnetDeBordId(?CarnetDeBord $carnet_de_bord_id): self
+    public function setCarnetDeBord(?CarnetDeBord $carnet_de_bord): self
     {
-        $this->carnet_de_bord_id = $carnet_de_bord_id;
+        $this->carnet_de_bord = $carnet_de_bord;
 
         return $this;
     }

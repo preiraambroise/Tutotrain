@@ -22,19 +22,6 @@ class EtapeDAvancementRepository extends ServiceEntityRepository
 //    /**
 //     * @return EtapeDAvancement[] Returns an array of EtapeDAvancement objects
 //     */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('e')
-            ->andWhere('e.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('e.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
 
     /*
     public function findOneBySomeField($value): ?EtapeDAvancement

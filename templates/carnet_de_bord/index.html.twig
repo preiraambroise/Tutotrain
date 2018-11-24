@@ -12,9 +12,18 @@
     <h1> Votre carnet de bord ! ✅</h1>
     <h1> Votre projet professionnel {{ cdb.ProjetProfessionnelId.Resume }}! ✅</h1>
 
+    {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+
     {% for value in result %}
         <p>{{ value.nom }} <mark>{{ value.etat }}</mark></p>
-        <p>{{ value.description }}</p>
+        <p>{{ value.description }}</p> <a href="{{ path('etape_edit', {'idetape' : value.id } ) }}">editer</a>
+        <form method="post" action="{{ path('etape_delete', {'idetape' : value.id}) }}">
+            <input type="hidden" name="_method" value="DELETE">
+            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ value.id) }}">
+            <button type="submit">Supprimer</button>
+        </form>
     {% endfor %}
 </div>
 {% endblock %}

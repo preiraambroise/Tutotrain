@@ -21,7 +21,7 @@ class CarnetDeBordController extends AbstractController
     public function homecreate(CarnetDeBord $carnetDeBord, EntityManagerInterface $entityManager, Request $request)
     {
         $repo = $this->getDoctrine()->getRepository(EtapeDAvancement::class);
-        $result = $repo->findBy(
+        $etapes = $repo->findBy(
             array('carnet_de_bord' => $carnetDeBord->getId()),
             array('date_creation' => 'DESC')
         );
@@ -43,7 +43,7 @@ class CarnetDeBordController extends AbstractController
         }
         return $this->render('carnet_de_bord/index.html.twig', [
             'cdb' => $carnetDeBord,
-            'result' => $result,
+            'etapes' => $etapes,
             'form' => $form->createView()
         ]);
     }
@@ -70,11 +70,13 @@ class CarnetDeBordController extends AbstractController
      * @Route("/carnetdebord/etape/{idetape}", name="etape_delete", methods={"DELETE"})
      * @Entity("etape", expr="repository.find(idetape)")
      */
-    public function delete($id, EtapeDAvancement $etape, EntityManagerInterface $em, Request $request)
+    public function delete(EtapeDAvancement $etape, EntityManagerInterface $em, Request $request)
     {
         if ($this->isCsrfTokenValid('delete'.$etape->getId(), $request->get('_token')))
-        $em->remove($etape);
-        $em->flush();
+        {
+            $em->remove($etape);
+            $em->flush();
+        }
         return $this->redirectToRoute('carnet_de_bord', array('id' => $etape->getCarnetDeBord()->getId()));
     }
 }

@@ -9,9 +9,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class EtapeDAvancement
 {
-    private const CREE = 1;
-    private const ENCOURS = 2;
-    private const TERMINE = 3;
+    private const CREE = "à faire";
+    private const ENCOURS = "en cours";
+    private const TERMINE = "terminées";
 
     public function __construct()
     {
